@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Precifica — quanto pagar em cada cargo do seu time?</title>
+<meta name="description" content="Precifica é uma plataforma para empresas definirem a faixa salarial justa de cada cargo, com base em dados reais de mercado. Consultoria de cargos e salários acessível para PMEs.">
+<meta property="og:title" content="Precifica — a régua salarial que a sua PME não tinha">
+<meta property="og:description" content="Calculadora gratuita de faixa salarial por cargo, senioridade e região — feita para PMEs que não têm orçamento pra consultoria de cargos e salários.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://precifica.htmly.com.br/">
+<meta property="og:image" content="https://precifica.htmly.com.br/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Precifica — a régua salarial que a sua PME não tinha">
+<meta name="twitter:description" content="Calculadora gratuita de faixa salarial por cargo, senioridade e região — feita para PMEs.">
+<meta name="twitter:image" content="https://precifica.htmly.com.br/og-image.png">
+<meta name="theme-color" content="#14213D">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://precifica.htmly.com.br/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2314213D'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' font-weight='700' fill='%23F6F1E7' text-anchor='middle'%3EP.%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2314213D'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' font-weight='700' fill='%23F6F1E7' text-anchor='middle'%3EP.%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Precifica",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "description": "Plataforma de benchmarking salarial para pequenas e médias empresas definirem a faixa salarial justa de cada cargo, com base em dados reais de mercado.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "BRL"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Posso confiar nos dados?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A base de partida vem de dados públicos oficiais (RAIS/CAGED, pesquisas Sebrae) — não é uma opinião nossa. Conforme os pilotos entram, cruzamos com faixas praticadas por empresas reais para calibrar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Como os salários são calculados?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A faixa sai de uma fórmula aberta: valor-base do cargo × ajuste por senioridade × ajuste por região. A busca de região reconhece qualquer cidade, estado ou UF do Brasil, mas hoje classifica o resultado em 3 perfis (capital, cidade média, interior)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Existe inteligência artificial no cálculo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hoje, não — o modelo atual é estatístico e transparente, baseado em dados públicos. Refinar com aprendizado de máquina é um passo do roadmap, depois que houver volume real de dados dos pilotos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Serve para empresas grandes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Dá pra usar, mas hoje o produto é otimizado para PME. Empresas grandes já costumam ter acesso a consultorias de cargos e salários tradicionais."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Preciso cadastrar cartão de crédito?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Não. A calculadora individual é gratuita pra sempre, sem cartão. O piloto para empresas também é gratuito por 60 dias."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Existe teste gratuito?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim — a calculadora do site já é o teste, sem cadastro. Para empresas, o piloto gratuito de 60 dias é a forma de testar o painel completo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Existe suporte?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim, suporte prioritário por e-mail no plano Empresa. Dúvidas gerais podem ir direto para o e-mail de contato do Precifica."
+      }
+    }
+  ]
+}
+</script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a href="#main" class="skip-link">Pular para o conteúdo</a>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <div class="brand-mark">P.</div>
+      <div class="brand-name">Precifica</div>
+    </div>
+    <div class="nav-right">
+      <nav class="nav-links">
+        <a href="#problema" data-nav data-i18n data-pt="Problema" data-en="Problem">Problema</a>
+        <a href="#solucao" data-nav data-i18n data-pt="Solução" data-en="Solution">Solução</a>
+        <a href="#concorrencia" data-nav data-i18n data-pt="Diferencial" data-en="Advantage">Diferencial</a>
+        <a href="#planos" data-nav data-i18n data-pt="Planos" data-en="Pricing">Planos</a>
+        <a href="#faq" data-nav data-i18n data-pt="FAQ" data-en="FAQ">FAQ</a>
+      </nav>
+      <div class="lang-switch" id="langSwitch" role="group" aria-label="Idioma / Language">
+        <button type="button" class="lang-btn active" data-lang="pt" aria-pressed="true">PT</button>
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a href="#lista" class="btn btn-solid nav-cta" data-i18n data-pt="Quero acesso antecipado" data-en="Get early access">Quero acesso antecipado</a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+  <div class="mm-top">
+    <div class="brand">
+      <div class="brand-mark">P.</div>
+      <div class="brand-name">Precifica</div>
+    </div>
+    <button class="close-btn" id="closeMenuBtn" aria-label="Fechar menu">×</button>
+  </div>
+  <a href="#problema" data-mnav data-i18n data-pt="Problema" data-en="Problem">Problema</a>
+  <a href="#mercado" data-mnav data-i18n data-pt="Mercado" data-en="Market">Mercado</a>
+  <a href="#solucao" data-mnav data-i18n data-pt="Solução" data-en="Solution">Solução</a>
+  <a href="#concorrencia" data-mnav data-i18n data-pt="Diferencial" data-en="Advantage">Diferencial</a>
+  <a href="#agora" data-mnav data-i18n data-pt="Por que agora" data-en="Why now">Por que agora</a>
+  <a href="#validacao" data-mnav data-i18n data-pt="Validação" data-en="Validation">Validação</a>
+  <a href="#confianca" data-mnav data-i18n data-pt="Por que confiar" data-en="Why trust us">Por que confiar</a>
+  <a href="#modelo" data-mnav data-i18n data-pt="Modelo" data-en="Business model">Modelo</a>
+  <a href="#planos" data-mnav data-i18n data-pt="Planos" data-en="Pricing">Planos</a>
+  <a href="#faq" data-mnav data-i18n data-pt="FAQ" data-en="FAQ">FAQ</a>
+  <a href="#roadmap" data-mnav data-i18n data-pt="Roadmap" data-en="Roadmap">Roadmap</a>
+  <a href="#sobre" data-mnav data-i18n data-pt="Sobre" data-en="About">Sobre</a>
+  <div class="lang-switch lang-switch-mobile" role="group" aria-label="Idioma / Language" style="margin-top:18px;">
+    <button type="button" class="lang-btn active" data-lang="pt" aria-pressed="true">Português</button>
+    <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">English</button>
+  </div>
+  <a href="#lista" class="btn btn-solid" style="margin-top:18px;text-align:center;width:100%;display:block;" data-mnav data-i18n data-pt="Quero acesso antecipado" data-en="Get early access">Quero acesso antecipado</a>
+</div>
+
+<section class="hero" id="main">
+  <div class="hero-bg" aria-hidden="true">
+    <span class="blob blob-ink"></span>
+    <span class="blob blob-amber"></span>
+    <span class="blob blob-rust"></span>
+  </div>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="badge" data-i18n data-pt="Feito para RH e gestores de PMEs" data-en="Built for HR and small-business managers"><span class="pulse"></span>Feito para RH e gestores de PMEs</div>
+      <h1 data-i18n-html data-pt-html="Descubra a faixa salarial certa <em>pra cada cargo do seu time.</em>" data-en-html="Find the right salary range <em>for every role on your team.</em>">Descubra a faixa salarial certa <em>pra cada cargo do seu time.</em></h1>
+      <p class="lede" data-i18n data-pt="Informe o cargo, a senioridade e a região — em segundos você recebe a faixa salarial recomendada, com base em dados reais de mercado. Sem consultoria cara, sem planilha, sem achismo." data-en="Enter the role, seniority and region — in seconds you get the recommended salary range, based on real market data. No expensive consulting, no spreadsheets, no guesswork.">Informe o cargo, a senioridade e a região — em segundos você recebe a faixa salarial recomendada, com base em dados reais de mercado. Sem consultoria cara, sem planilha, sem achismo.</p>
+      <ul class="hero-facts">
+        <li data-i18n-html data-pt-html="<strong>Como funciona:</strong> cargo + senioridade + região → faixa salarial na hora" data-en-html="<strong>How it works:</strong> role + seniority + region → instant salary range"><strong>Como funciona:</strong> cargo + senioridade + região → faixa salarial na hora</li>
+        <li data-i18n-html data-pt-html="<strong>Pra quem é:</strong> PMEs em crescimento e prestadores de serviço autônomos" data-en-html="<strong>Who it's for:</strong> growing small businesses and independent service providers"><strong>Pra quem é:</strong> PMEs em crescimento e prestadores de serviço autônomos</li>
+        <li data-i18n-html data-pt-html="<strong>Tempo necessário:</strong> menos de 30 segundos, sem cadastro" data-en-html="<strong>Time needed:</strong> under 30 seconds, no sign-up"><strong>Tempo necessário:</strong> menos de 30 segundos, sem cadastro</li>
+      </ul>
+      <div class="hero-ctas">
+        <a class="btn btn-solid" href="#calculadora" data-i18n data-pt="Testar a calculadora grátis" data-en="Try the free calculator">Testar a calculadora grátis</a>
+        <a class="btn btn-ghost" href="#demo" data-i18n data-pt="Ver como funciona" data-en="See how it works">Ver como funciona</a>
+      </div>
+    </div>
+
+    <div class="receipt" id="calculadora">
+      <div class="receipt-head">
+        <span class="t1" data-i18n data-pt="Calculadora Precifica" data-en="Precifica Calculator">Calculadora Precifica</span>
+        <span class="t2">nº 0024</span>
+      </div>
+
+      <div class="calc-mode" id="calcMode">
+        <button class="mode-btn" data-mode="freelancer" data-i18n data-pt="Prestador de serviço" data-en="Service provider">Prestador de serviço</button>
+        <button class="mode-btn active" data-mode="empresa" data-i18n data-pt="Empresa / RH" data-en="Company / HR">Empresa / RH</button>
+      </div>
+
+      <div class="field mode-field" id="fieldFreelancer" style="display:none;">
+        <label for="categoria" data-i18n data-pt="Tipo de serviço" data-en="Service type">Tipo de serviço</label>
+        <select id="categoria">
+          <option value="design" data-base="45" data-pt="Design / Criação" data-en="Design / Creative">Design / Criação</option>
+          <option value="dev" data-base="70" data-pt="Desenvolvimento / TI" data-en="Development / IT">Desenvolvimento / TI</option>
+          <option value="aulas" data-base="35" data-pt="Aulas particulares" data-en="Private tutoring">Aulas particulares</option>
+          <option value="beleza" data-base="30" data-pt="Estética / Beleza" data-en="Beauty / Aesthetics">Estética / Beleza</option>
+          <option value="reforma" data-base="40" data-pt="Reparos / Reforma" data-en="Repairs / Renovation">Reparos / Reforma</option>
+          <option value="diarista" data-base="18" data-pt="Limpeza / Diarista" data-en="Cleaning / Housekeeping">Limpeza / Diarista</option>
+          <option value="personal" data-base="55" data-pt="Personal trainer" data-en="Personal trainer">Personal trainer</option>
+          <option value="marketing" data-base="50" data-pt="Marketing / Redação" data-en="Marketing / Copywriting">Marketing / Redação</option>
+        </select>
+      </div>
+
+      <div class="field mode-field" id="fieldEmpresa">
+        <label for="categoriaEmpresa" data-i18n data-pt="Cargo" data-en="Role">Cargo</label>
+        <select id="categoriaEmpresa">
+          <option value="dev" data-base="4800" data-pt="Desenvolvedor(a) de Software" data-en="Software Developer">Desenvolvedor(a) de Software</option>
+          <option value="design" data-base="3400" data-pt="Designer (Produto/UX)" data-en="Designer (Product/UX)">Designer (Produto/UX)</option>
+          <option value="dados" data-base="4200" data-pt="Analista de Dados / BI" data-en="Data / BI Analyst">Analista de Dados / BI</option>
+          <option value="marketing" data-base="3200" data-pt="Analista de Marketing" data-en="Marketing Analyst">Analista de Marketing</option>
+          <option value="social" data-base="2600" data-pt="Social Media / Conteúdo" data-en="Social Media / Content">Social Media / Conteúdo</option>
+          <option value="vendas" data-base="2600" data-pt="Vendedor(a) / Executivo(a) de Contas" data-en="Sales / Account Executive">Vendedor(a) / Executivo(a) de Contas</option>
+          <option value="cs" data-base="2400" data-pt="Atendimento / Customer Success" data-en="Support / Customer Success">Atendimento / Customer Success</option>
+          <option value="admin" data-base="2300" data-pt="Assistente Administrativo" data-en="Administrative Assistant">Assistente Administrativo</option>
+          <option value="financeiro" data-base="3000" data-pt="Analista Financeiro" data-en="Financial Analyst">Analista Financeiro</option>
+          <option value="contabil" data-base="3300" data-pt="Contador(a)" data-en="Accountant">Contador(a)</option>
+          <option value="rh" data-base="3000" data-pt="Analista de RH / Recrutamento" data-en="HR / Recruiting Analyst">Analista de RH / Recrutamento</option>
+          <option value="projetos" data-base="4000" data-pt="Gerente de Projetos" data-en="Project Manager">Gerente de Projetos</option>
+          <option value="juridico" data-base="4500" data-pt="Analista Jurídico" data-en="Legal Analyst">Analista Jurídico</option>
+          <option value="operacoes" data-base="2900" data-pt="Coordenador(a) de Operações" data-en="Operations Coordinator">Coordenador(a) de Operações</option>
+          <option value="suporte" data-base="2100" data-pt="Suporte Técnico / TI" data-en="Technical / IT Support">Suporte Técnico / TI</option>
+          <option value="logistica" data-base="2200" data-pt="Motorista / Logística" data-en="Driver / Logistics">Motorista / Logística</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="nivel" id="labelNivel" data-i18n data-pt="Senioridade" data-en="Seniority">Senioridade</label>
+        <select id="nivel">
+          <option value="0.7" data-pt="Júnior (menos de 1 ano)" data-en="Junior (under 1 year)">Júnior (menos de 1 ano)</option>
+          <option value="1" selected data-pt="Pleno (1 a 4 anos)" data-en="Mid-level (1 to 4 years)">Pleno (1 a 4 anos)</option>
+          <option value="1.5" data-pt="Sênior (5+ anos)" data-en="Senior (5+ years)">Sênior (5+ anos)</option>
+        </select>
+      </div>
+
+      <div class="field field-location">
+        <label for="regiaoBusca" data-i18n data-pt="Região" data-en="Region">Região</label>
+        <div class="combo" id="regiaoCombo">
+          <input type="text" id="regiaoBusca" class="combo-input" autocomplete="off" spellcheck="false"
+                 placeholder="Cidade, estado ou UF (ex: Curitiba, PR, São Paulo)"
+                 data-pt-placeholder="Cidade, estado ou UF (ex: Curitiba, PR, São Paulo)"
+                 data-en-placeholder="City, state or region (e.g. Curitiba, PR, São Paulo)"
+                 role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="regiaoLista" aria-label="Buscar região">
+          <input type="hidden" id="regiao" value="1">
+          <ul class="combo-list" id="regiaoLista" role="listbox" hidden></ul>
+        </div>
+        <div class="combo-hint" id="regiaoHint" data-i18n data-pt="Perfil: cidade de médio porte (padrão) — busque uma cidade ou estado pra refinar." data-en="Profile: mid-size city (default) — search a city or state to refine.">Perfil: cidade de médio porte (padrão) — busque uma cidade ou estado pra refinar.</div>
+      </div>
+
+      <div class="field">
+        <label for="modeloTrabalho" data-i18n data-pt="Modelo de trabalho" data-en="Work model">Modelo de trabalho</label>
+        <select id="modeloTrabalho">
+          <option value="presencial" selected data-pt="Presencial" data-en="On-site">Presencial</option>
+          <option value="hibrido" data-pt="Híbrido" data-en="Hybrid">Híbrido</option>
+          <option value="remoto" data-pt="Remoto" data-en="Remote">Remoto</option>
+        </select>
+        <div class="combo-hint" data-i18n data-pt="Ainda não ajusta o valor — não temos dado suficiente pra isso ainda." data-en="Doesn't affect the value yet — we don't have enough data for that.">Ainda não ajusta o valor — não temos dado suficiente pra isso ainda.</div>
+      </div>
+
+      <div class="result">
+        <div class="row"><span id="labelResultado1">Salário mensal estimado</span><span class="mono" id="hora">—</span></div>
+        <div class="row total"><span id="labelResultado2">Faixa salarial recomendada</span><span class="price mono" id="faixa">—</span></div>
+        <p class="hint" id="calcHint">Estimativa ilustrativa baseada em faixas médias de mercado por cargo, senioridade e região. No produto real, esse valor vem de dados coletados com empresas e vagas reais.</p>
+
+        <button type="button" class="copy-btn" id="copyBtn">📋 Copiar resultado</button>
+
+        <div class="premium-block" id="premiumBlock" style="display:none;">
+          <div class="premium-title" data-i18n-html data-pt-html="Relatório detalhado <span class=&quot;premium-badge&quot;>PREMIUM</span>" data-en-html="Detailed report <span class=&quot;premium-badge&quot;>PREMIUM</span>">Relatório detalhado <span class="premium-badge">PREMIUM</span></div>
+          <div class="row small"><span data-i18n data-pt="Base da categoria" data-en="Category base">Base da categoria</span><span class="mono" id="pBase">—</span></div>
+          <div class="row small"><span data-i18n data-pt="Ajuste por experiência" data-en="Experience adjustment">Ajuste por experiência</span><span class="mono" id="pNivel">—</span></div>
+          <div class="row small"><span data-i18n data-pt="Ajuste por região" data-en="Region adjustment">Ajuste por região</span><span class="mono" id="pRegiao">—</span></div>
+          <p class="premium-tip" id="premiumTip"></p>
+        </div>
+
+        <div class="premium-locked" id="premiumLocked" data-i18n-html data-pt-html="🔒 Relatório detalhado e argumento de negociação — disponível no <a href=&quot;#planos&quot;>plano Premium</a>" data-en-html="🔒 Detailed report and negotiation talking points — available on the <a href=&quot;#planos&quot;>Premium plan</a>">
+          🔒 Relatório detalhado e argumento de negociação — disponível no <a href="#planos">plano Premium</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="q reveal" id="demo">
+  <div class="wrap">
+    <div class="q-head">
+      <div class="eyebrow"><span class="num" style="background:var(--green)">•</span><span data-i18n data-pt="VEJA EM AÇÃO" data-en="SEE IT IN ACTION">VEJA EM AÇÃO</span></div>
+      <h2 data-i18n data-pt="Do cargo à faixa salarial, em 3 passos" data-en="From role to salary range, in 3 steps">Do cargo à faixa salarial, em 3 passos</h2>
+      <p data-i18n data-pt="É exatamente o que a calculadora acima faz — sem cadastro, sem planilha." data-en="It's exactly what the calculator above does — no sign-up, no spreadsheet.">É exatamente o que a calculadora acima faz — sem cadastro, sem planilha.</p>
+    </div>
+
+    <div class="demo-steps">
+      <div class="demo-step">
+        <div class="demo-num">1</div>
+        <h3 data-i18n data-pt="Escolha o cargo" data-en="Choose the role">Escolha o cargo</h3>
+        <p data-i18n data-pt="Selecione entre os cargos e categorias já mapeados na calculadora." data-en="Pick from the roles and categories already mapped in the calculator.">Selecione entre os cargos e categorias já mapeados na calculadora.</p>
+      </div>
+      <div class="demo-arrow" aria-hidden="true">→</div>
+      <div class="demo-step">
+        <div class="demo-num">2</div>
+        <h3 data-i18n data-pt="Informe senioridade e região" data-en="Enter seniority and region">Informe senioridade e região</h3>
+        <p data-i18n data-pt="Júnior, pleno ou sênior — capital, cidade média ou interior." data-en="Junior, mid-level or senior — capital, mid-size city, or smaller town.">Júnior, pleno ou sênior — capital, cidade média ou interior.</p>
+      </div>
+      <div class="demo-arrow" aria-hidden="true">→</div>
+      <div class="demo-step">
+        <div class="demo-num">3</div>
+        <h3 data-i18n data-pt="Receba a faixa recomendada" data-en="Get the recommended range">Receba a faixa recomendada</h3>
+        <p data-i18n data-pt="Faixa salarial, média de mercado e comparação — na hora." data-en="Salary range, market average and comparison — instantly.">Faixa salarial, média de mercado e comparação — na hora.</p>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-head">
+        <span class="t1" data-i18n data-pt="Exemplo ilustrativo" data-en="Illustrative example">Exemplo ilustrativo</span>
+        <span class="t2" data-i18n data-pt="mesma fórmula da calculadora acima" data-en="same formula as the calculator above">mesma fórmula da calculadora acima</span>
+      </div>
+      <div class="example-grid">
+        <div class="example-input">
+          <div class="ei-row"><span data-i18n data-pt="Cargo" data-en="Role">Cargo</span><strong data-i18n data-pt="Desenvolvedor(a) de Software" data-en="Software Developer">Desenvolvedor(a) de Software</strong></div>
+          <div class="ei-row"><span data-i18n data-pt="Região" data-en="Region">Região</span><strong data-i18n data-pt="Capital / região metropolitana" data-en="Capital / metro area">Capital / região metropolitana</strong></div>
+          <div class="ei-row"><span data-i18n data-pt="Senioridade" data-en="Seniority">Senioridade</span><strong data-i18n data-pt="Pleno (1 a 4 anos)" data-en="Mid-level (1 to 4 years)">Pleno (1 a 4 anos)</strong></div>
+          <div class="ei-row"><span data-i18n data-pt="Salário atual pago" data-en="Current salary paid">Salário atual pago</span><strong class="mono">R$ 4.700</strong></div>
+        </div>
+        <div class="example-result">
+          <div class="er-row"><span data-i18n data-pt="Faixa recomendada" data-en="Recommended range">Faixa recomendada</span><span class="mono">R$ 5.184 – R$ 6.624</span></div>
+          <div class="er-row"><span data-i18n data-pt="Média de mercado" data-en="Market average">Média de mercado</span><span class="mono">R$ 5.760</span></div>
+          <div class="er-verdict below" data-i18n data-pt="⚠ Abaixo da faixa recomendada — risco de perder o profissional para o mercado" data-en="⚠ Below the recommended range — risk of losing this person to the market">⚠ Abaixo da faixa recomendada — risco de perder o profissional para o mercado</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="summary-bar">
+  <div class="wrap summary-grid">
+    <div>
+      <div class="k" data-i18n data-pt="Problema" data-en="Problem">Problema</div>
+      <p data-i18n data-pt="PMEs não têm orçamento pra consultoria de cargos e salários e acabam pagando no achismo." data-en="Small businesses can't afford compensation consulting and end up guessing what to pay.">PMEs não têm orçamento pra consultoria de cargos e salários e acabam pagando no achismo.</p>
+    </div>
+    <div>
+      <div class="k" data-i18n data-pt="Mercado" data-en="Market">Mercado</div>
+      <p data-i18n data-pt="24 milhões de pequenos negócios ativos no Brasil, 95% de todas as empresas do país (Sebrae, 2026)." data-en="24 million active small businesses in Brazil, 95% of all companies in the country (Sebrae, 2026).">24 milhões de pequenos negócios ativos no Brasil, 95% de todas as empresas do país (Sebrae, 2026).</p>
+    </div>
+    <div>
+      <div class="k" data-i18n data-pt="Solução" data-en="Solution">Solução</div>
+      <p data-i18n data-pt="Uma régua salarial por cargo, senioridade e região, com dados reais — sem custo de consultoria." data-en="A salary benchmark by role, seniority and region, backed by real data — with no consulting cost.">Uma régua salarial por cargo, senioridade e região, com dados reais — sem custo de consultoria.</p>
+    </div>
+  </div>
+</section>
+
+<section class="q reveal" id="problema">
+  <div class="wrap">
+    <div class="q-head">
+      <div class="eyebrow"><span class="num" style="background:var(--rust)">1</span><span data-i18n data-pt="QUEM TEM ESSE PROBLEMA" data-en="WHO HAS THIS PROBLEM">QUEM TEM ESSE PROBLEMA</span></div>
+      <h2 data-i18n data-pt="Quem não sabe quanto pagar" data-en="Who doesn't know what to pay">Quem não sabe quanto pagar</h2>
+      <p data-i18n data-pt="Consultoria de cargos e salários (Mercer, Korn Ferry, Hay Group) custa na casa dos milhares de reais e foi desenhada para grandes corporações. O Precifica é feito pra um público específico: PMEs brasileiras contratando entre o 5º e o 20º funcionário, sem RH estruturado — que hoje decidem salário no achismo, copiando concorrente ou negociando no improviso com cada candidato." data-en="Compensation consulting (Mercer, Korn Ferry, Hay Group) costs thousands of dollars and was designed for large corporations. Precifica is built for a specific audience: Brazilian small businesses hiring their 5th to 20th employee, with no structured HR — who today decide salary by guesswork, copying competitors, or negotiating on the fly with each candidate.">Consultoria de cargos e salários (Mercer, Korn Ferry, Hay Group) custa na casa dos milhares de reais e foi desenhada para grandes corporações. O Precifica é feito pra um público específico: PMEs brasileiras contratando entre o 5º e o 20º funcionário, sem RH estruturado — que hoje decidem salário no achismo, copiando concorrente ou negociando no improviso com cada candidato.</p>
+    </div>
+
+    <div class="persona-grid">
+      <div class="persona">
+        <div class="glyph">🏢</div>
+        <h3 data-i18n data-pt="PMEs em crescimento" data-en="Growing small businesses">PMEs em crescimento</h3>
+        <p data-i18n data-pt="Empresas que estão contratando o 5º, 10º ou 20º funcionário e não têm um RH estruturado nem tabela salarial formal." data-en="Companies hiring their 5th, 10th or 20th employee, with no structured HR or formal salary table.">Empresas que estão contratando o 5º, 10º ou 20º funcionário e não têm um RH estruturado nem tabela salarial formal.</p>
+      </div>
+      <div class="persona">
+        <div class="glyph">👥</div>
+        <h3 data-i18n data-pt="RH e gestores sem ferramenta" data-en="HR and managers without a tool">RH e gestores sem ferramenta</h3>
+        <p data-i18n data-pt="Times de RH pequenos (ou gestores acumulando a função de RH) que precisam decidir salário sem acesso a pesquisas salariais pagas." data-en="Small HR teams (or managers doubling as HR) who need to decide salary without access to paid salary surveys.">Times de RH pequenos (ou gestores acumulando a função de RH) que precisam decidir salário sem acesso a pesquisas salariais pagas.</p>
+      </div>
+      <div class="persona">
+        <div class="glyph">📉</div>
+        <h3 data-i18n data-pt="Empresas perdendo talento" data-en="Companies losing talent">Empresas perdendo talento</h3>
+        <p data-i18n data-pt="Pagam abaixo do mercado sem saber, e descobrem isso só quando o funcionário pede demissão pra ganhar mais em outro lugar." data-en="They pay below market without knowing it, and only find out when the employee quits to earn more elsewhere.">Pagam abaixo do mercado sem saber, e descobrem isso só quando o funcionário pede demissão pra ganhar mais em outro lugar.</p>
+      </div>
+      <div class="persona">
+        <div class="glyph">🧾</div>
+        <h3 data-i18n data-pt="Freelancers e autônomos" data-en="Freelancers and independents">Freelancers e autônomos</h3>
+        <p data-i18n data-pt="Do outro lado da mesa, prestadores de serviço enfrentam o mesmo problema pra saber quanto cobrar — e também usam o Precifica." data-en="On the other side of the table, service providers face the same problem figuring out what to charge — and also use Precifica.">Do outro lado da mesa, prestadores de serviço enfrentam o mesmo problema pra saber quanto cobrar — e também usam o Precifica.</p>
+      </div>
+    </div>
+
+    <div class="stat-strip">
+      <div><div class="n"><span class="count" data-count-to="24" data-suffix="M">0M</span></div><div class="l" data-i18n data-pt="pequenos negócios ativos no Brasil — 95% de todas as empresas (Sebrae, 2026)" data-en="active small businesses in Brazil — 95% of all companies (Sebrae, 2026)">pequenos negócios ativos no Brasil — 95% de todas as empresas (Sebrae, 2026)</div></div>
+      <div><div class="n"><span class="count" data-count-to="80" data-suffix="%">0%</span></div><div class="l" data-i18n data-pt="das vagas de emprego formal geradas por PMEs em 2025 (Sebrae)" data-en="of formal jobs created by small businesses in 2025 (Sebrae)">das vagas de emprego formal geradas por PMEs em 2025 (Sebrae)</div></div>
+      <div><div class="n"><span class="count" data-count-to="51" data-prefix="R$ " data-suffix=" bi">R$ 0 bi</span></div><div class="l" data-i18n data-pt="pagos em salários por mês só pelas micro e pequenas empresas (Sebrae)" data-en="paid in salaries per month by micro and small businesses alone (Sebrae)">pagos em salários por mês só pelas micro e pequenas empresas (Sebrae)</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="q reveal" id="mercado">
+  <div class="wrap">
+    <div class="q-head">
+      <div class="eyebrow"><span class="num" style="background:var(--amber)">2</span><span data-i18n data-pt="TAMANHO DO MERCADO" data-en="MARKET SIZE">TAMANHO DO MERCADO</span></div>
+      <h2 data-i18n data-pt="Um mercado gigante, mal atendido" data-en="A giant, underserved market">Um mercado gigante, mal atendido</h2>
+      <p data-i18n data-pt="PMEs respondem por quase toda a economia formal brasileira — mas o mercado de pesquisa salarial foi construído para quem pode pagar consultoria cara. Isso deixa um espaço aberto enorme entre &quot;planilha feita à mão&quot; e &quot;consultoria de seis dígitos&quot;." data-en="Small businesses account for nearly all of Brazil's formal economy — but the salary research market was built for those who can afford expensive consulting. That leaves a huge open space between a hand-made spreadsheet and six-figure consulting.">PMEs respondem por quase toda a economia formal brasileira — mas o mercado de pesquisa salarial foi construído para quem pode pagar consultoria cara. Isso deixa um espaço aberto enorme entre "planilha feita à mão" e "consultoria de seis dígitos".</p>
+    </div>
+
+    <div class="market-num">
+      <div class="card">
+        <div class="big"><span class="count" data-count-to="24" data-suffix="M">0M</span></div>
+        <div class="lbl" data-i18n data-pt="pequenos negócios ativos no Brasil, 95% de todas as empresas do país (Sebrae, 2026)" data-en="active small businesses in Brazil, 95% of all companies in the country (Sebrae, 2026)">pequenos negócios ativos no Brasil, 95% de todas as empresas do país (Sebrae, 2026)</div>
+      </div>
+      <div class="card">
+        <div class="big"><span class="count" data-count-to="26.5" data-decimals="1" data-suffix="%">0%</span></div>
+        <div class="lbl" data-i18n data-pt="do PIB brasileiro é gerado por micro e pequenas empresas (Sebrae, 2026)" data-en="of Brazil's GDP is generated by micro and small businesses (Sebrae, 2026)">do PIB brasileiro é gerado por micro e pequenas empresas (Sebrae, 2026)</div>
+      </div>
+      <div class="card">
+        <div class="big"><span class="count" data-count-to="51" data-prefix="R$ " data-suffix="M+">R$ 0M+</span></div>
+        <div class="lbl" data-i18n data-pt="por mês em salários pagos só pelo segmento de pequenos negócios, a cada R$100 pagos em salário no Brasil, R$40 vêm de um pequeno negócio" data-en="per month in salaries paid by the small-business segment alone — of every R$100 paid in salaries in Brazil, R$40 comes from a small business">por mês em salários pagos só pelo segmento de pequenos negócios, a cada R$100 pagos em salário no Brasil, R$40 vêm de um pequeno negócio</div>
+      </div>
+    </div>
+
+    <div class="bars">
+      <div class="bar-row">
+        <div class="bar-label"><span data-i18n data-pt="PMEs — % de todas as empresas ativas no Brasil" data-en="Small businesses — % of all active companies in Brazil">PMEs — % de todas as empresas ativas no Brasil</span><span class="mono">95%</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:95%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label"><span data-i18n data-pt="PMEs — % das vagas de emprego formal geradas em 2025" data-en="Small businesses — % of formal jobs created in 2025">PMEs — % das vagas de emprego formal geradas em 2025</span><span class="mono">80%</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:80%;background:var(--ink)"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label"><span data-i18n data-pt="PMEs — % do PIB nacional" data-en="Small businesses — % of national GDP">PMEs — % do PIB nacional</span><span class="mono">26,5%</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:26.5%;background:var(--slate)"></div></div>
+      </div>
+    </div>
+    <p class="source-note"><span data-i18n data-pt="Fontes:" data-en="Sources:">Fontes:</span> <a href="https://agenciasebrae.com.br/dados/pequenos-negocios-somam-24-milhoes-de-empresas-ativas/" target="_blank" rel="noopener">Sebrae (2026)</a>, <a href="https://www.ibge.gov.br/estatisticas/sociais/trabalho/9171-pesquisa-nacional-por-amostra-de-domicilios-continua-trimestral.html" target="_blank" rel="noopener">IBGE (PNAD Contínua)</a><span data-i18n data-pt=". Números apresentados de forma ilustrativa, com fins de dimensionamento do problema." data-en=". Figures shown illustratively, for the purpose of sizing the problem.">. Números apresentados de forma ilustrativa, com fins de dimensionamento do problema.</span></p>
+  </div>
+</section>
+
+<section class="q reveal" id="solucao">
+  <div class="wrap">
+    <div class="q-head">
+      <div class="eyebrow"><span class="num" style="background:var(--green)">3</span><span data-i18n data-pt="A SOLUÇÃO" data-en="THE SOLUTION">A SOLUÇÃO</span></div>
+      <h2 data-i18n data-pt="A régua salarial que a PME não tinha" data-en="The salary benchmark small businesses never had">A régua salarial que a PME não tinha</h2>
+      <p data-i18n data-pt="O Precifica cruza dados reais de mercado com cargo, senioridade e região, pra sugerir uma faixa salarial justa — em segundos, sem o custo e a burocracia de uma consultoria de cargos e salários." data-en="Precifica cross-references real market data with role, seniority and region to suggest a fair salary range — in seconds, without the cost and red tape of compensation consulting.">O Precifica cruza dados reais de mercado com cargo, senioridade e região, pra sugerir uma faixa salarial justa — em segundos, sem o custo e a burocracia de uma consultoria de cargos e salários.</p>
+    </div>
+
+    <div class="solution-list">
+      <div class="sol-item">
+        <svg class="sol-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="4" y="20" width="6" height="14" rx="1" fill="var(--green)"/><rect x="17" y="12" width="6" height="22" rx="1" fill="var(--green)" opacity=".7"/><rect x="30" y="6" width="6" height="28" rx="1" fill="var(--green)" opacity=".45"/></svg>
+        <div class="tag" data-i18n data-pt="Painel para empresas" data-en="Company dashboard">Painel para empresas</div>
+        <h3 data-i18n data-pt="Faixa salarial sugerida por cargo e senioridade" data-en="Suggested salary range by role and seniority">Faixa salarial sugerida por cargo e senioridade</h3>
+        <p data-i18n data-pt="RH e gestores usam a calculadora pra definir quanto pagar em cada cargo, evitando defasagem ou desperdício — sem depender de planilha própria." data-en="HR and managers use the calculator to decide what to pay for each role, avoiding underpayment or waste — without relying on their own spreadsheet.">RH e gestores usam a calculadora pra definir quanto pagar em cada cargo, evitando defasagem ou desperdício — sem depender de planilha própria.</p>
+      </div>
+      <div class="sol-item">
+        <svg class="sol-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M4 26l9-10 8 6 15-16" stroke="var(--rust)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="36" cy="6" r="3" fill="var(--rust)"/></svg>
+        <div class="tag" data-i18n data-pt="Alerta de defasagem" data-en="Underpayment alert">Alerta de defasagem</div>
+        <h3 data-i18n data-pt="Aviso quando um salário está fora da curva" data-en="Warning when a salary is out of line">Aviso quando um salário está fora da curva</h3>
+        <p data-i18n data-pt="Se um cargo do time está pagando muito abaixo do mercado, a plataforma sinaliza o risco de perder aquele funcionário." data-en="If a role on your team is paying well below market, the platform flags the risk of losing that employee.">Se um cargo do time está pagando muito abaixo do mercado, a plataforma sinaliza o risco de perder aquele funcionário.</p>
+      </div>
+      <div class="sol-item">
+        <svg class="sol-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="12" cy="14" r="5" fill="var(--amber)" opacity=".85"/><circle cx="28" cy="14" r="5" fill="var(--amber)" opacity=".55"/><circle cx="20" cy="28" r="5" fill="var(--amber)"/></svg>
+        <div class="tag" data-i18n data-pt="Dados colaborativos" data-en="Collaborative data">Dados colaborativos</div>
+        <h3 data-i18n data-pt="Benchmark alimentado pela comunidade" data-en="Community-powered benchmark">Benchmark alimentado pela comunidade</h3>
+        <p data-i18n data-pt="Cada empresa pode contribuir com a faixa salarial que pratica, mantendo a base sempre atualizada com a realidade do mercado." data-en="Every company can contribute the salary range it actually pays, keeping the database up to date with market reality.">Cada empresa pode contribuir com a faixa salarial que pratica, mantendo a base sempre atualizada com a realidade do mercado.</p>
+      </div>
+      <div class="sol-item">
+        <svg class="sol-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="5" y="8" width="30" height="24" rx="2" stroke="var(--ink)" stroke-width="2"/><path d="M5 15h30" stroke="var(--ink)" stroke-width="2"/><path d="M12 22h16M12 27h10" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" opacity=".6"/></svg>
+        <div class="tag" data-i18n data-pt="Calculadora de preço" data-en="Pricing calculator">Calculadora de preço</div>
+        <h3 data-i18n data-pt="Também funciona para autônomos" data-en="Also works for freelancers">Também funciona para autônomos</h3>
+        <p data-i18n data-pt="Prestadores de serviço usam o mesmo motor pra descobrir quanto cobrar — o que também gera dado de mercado pro lado das empresas." data-en="Service providers use the same engine to find out what to charge — which also generates market data for the company side.">Prestadores de serviço usam o mesmo motor pra descobrir quanto cobrar — o que também gera dado de mercado pro lado das empresas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="q reveal" id="concorrencia">
+  <div class="wrap">
+    <div class="q-head">
+      <div class="eyebrow"><span class="num" style="background:var(--ink)">4</span><span data-i18n data-pt="DIFERENCIAL COMPETITIVO" data-en="COMPETITIVE ADVANTAGE">DIFERENCIAL COMPETITIVO</span></div>
+      <h2 data-i18n data-pt="Por que não usar o que já existe?" data-en="Why not use what already exists?">Por que não usar o que já existe?</h2>
+      <p data-i18n data-pt="Hoje a PME resolve isso com planilha própria, &quot;achismo do gestor&quot; ou uma consultoria cara demais pro seu porte. Ferramentas de RH genéricas (Gupy, Sólides) resolvem recrutamento, não definição de faixa salarial." data-en="Today, small businesses handle this with their own spreadsheet, a manager's gut feeling, or consulting too expensive for their size. Generic HR tools (Gupy, Sólides) solve recruiting, not salary-range setting.">Hoje a PME resolve isso com planilha própria, "achismo do gestor" ou uma consultoria cara demais pro seu porte. Ferramentas de RH genéricas (Gupy, Sólides) resolvem recrutamento, não definição de faixa salarial.</p>
+    </div>
+
+    <div class="table-scroll">
+    <div class="comp-table">
+      <div class="comp-row head">
+        <div data-i18n data-pt="Critério" data-en="Criteria">Critério</div>
+        <div data-i18n data-pt="Planilha própria" data-en="Own spreadsheet">Planilha própria</div>
+        <div data-i18n data-pt="Consultoria de C&S" data-en="Comp. consulting">Consultoria de C&S</div>
+        <div data-i18n data-pt="Plataformas de RH genéricas" data-en="Generic HR platforms">Plataformas de RH genéricas</div>
+        <div>Precifica</div>
+      </div>
+      <div class="comp-row">
+        <div class="feat" data-i18n data-pt="Faixa personalizada por cargo e região" data-en="Custom range by role and region">Faixa personalizada por cargo e região</div>
+        <div class="no" data-i18n data-pt="Não" data-en="No">Não</div><div class="yes" data-i18n data-pt="Sim" data-en="Yes">Sim</div><div class="no" data-i18n data-pt="Não" data-en="No">Não</div><div class="yes" data-i18n data-pt="Sim" data-en="Yes">Sim</div>
+      </div>
+      <div class="comp-row">
+        <div class="feat" data-i18n data-pt="Atualizado continuamente" data-en="Continuously updated">Atualizado continuamente</div>
+        <div class="no" data-i18n data-pt="Manual" data-en="Manual">Manual</div><div class="no" data-i18n data-pt="Raramente" data-en="Rarely">Raramente</div><div class="partial" data-i18n data-pt="Parcial" data-en="Partial">Parcial</div><div class="yes" data-i18n data-pt="Sim" data-en="Yes">Sim</div>
+      </div>
+      <div class="comp-row highlight">
+        <div class="feat" data-i18n data-pt="Acessível para PME (sem contrato caro)" data-en="Affordable for small businesses (no pricey contract)">Acessível para PME (sem contrato caro)</div>
+        <div class="yes" data-i18n data-pt="Sim" data-en="Yes">Sim</div><div class="no" data-i18n data-pt="Não" data-en="No">Não</div><div class="partial" data-i18n data-pt="Parcial" data-en="Partial">Parcial</div><div class="yes" data-i18n data-pt="Sim" data-en="Yes">Sim</div>
+      </div>
+      <div class="comp-row">
+        <div class="feat" data-i18n data-pt="Alerta de defasagem salarial" data-en="Salary lag alert">Alerta de defasagem salarial</div>
+        <div class="no" data-i18n data-pt="Não" data-en="No">Não</div><div class="no" data-i18n data-pt="Não" data-en="No">Não</div><div class="no" data-i18n data-pt="Não" data-en="No">Não</div><div class="yes" data-i18n data-pt="Sim" data-en="Yes">Sim</div>
+      </div>
+      <div class="comp-row">
+        <div class="feat" data-i18n data-pt="Setup em minutos, sem consultor" data-en="Set up in minutes, no consultant">Setup em minutos, sem consultor</div>
+        <div class="partial" data-i18n data-pt="Parcial" data-en="Partial">Parcial</div><div class="no" data-i18n data-pt="Não" data-en="No">Não</div><div class="partial" data-i18n data-pt="Parcial" data-en="Partial">Parcial</div><div class="yes" data-i18n data-pt="Sim" data-en="Yes">Sim</div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="q reveal" id="agora">
+  <div class="wrap">
+    <div class="q-head">
+      <div class="eyebrow"><span class="num" style="background:var(--rust)">5</span><span data-i18n data-pt="POR QUE AGORA" data-en="WHY NOW">POR QUE AGORA</span></div>
+      <h2 data-i18n data-pt="Por que esse mercado está aberto agora" data-en="Why this market is open right now">Por que esse mercado está aberto agora</h2>
+      <p data-i18n data-pt="Consultoria de cargos e salários existe há décadas — mas foi sempre construída pra quem tem orçamento de grande empresa. Três coisas mudaram o suficiente pra abrir espaço pra uma alternativa acessível:" data-en="Compensation consulting has existed for decades — but it was always built for those with a large-company budget. Three things have changed enough to open space for an affordable alternative:">Consultoria de cargos e salários existe há décadas — mas foi sempre construída pra quem tem orçamento de grande empresa. Três coisas mudaram o suficiente pra abrir espaço pra uma alternativa acessível:</p>
+    </div>
+
+    <div class="solution-list">
+      <div class="sol-item">
+        <div class="tag" data-i18n data-pt="Formalização em massa" data-en="Mass formalization">Formalização em massa</div>
+        <h3 data-i18n data-pt="Recorde histórico de PMEs formais" data-en="Record number of formal small businesses">Recorde histórico de PMEs formais</h3>
+        <p data-i18n data-pt="O Brasil bateu recorde de abertura de pequenos negócios em 2025 — mais empresas formais significa mais gente contratando com carteira assinada, e precisando decidir salário." data-en="Brazil hit a record for new small businesses in 2025 — more formal companies means more people hiring on the books, and needing to decide salary.">O Brasil bateu recorde de abertura de pequenos negócios em 2025 — mais empresas formais significa mais gente contratando com carteira assinada, e precisando decidir salário.</p>
+      </div>
+      <div class="sol-item">
+        <div class="tag" data-i18n data-pt="Pressão por retenção" data-en="Pressure to retain">Pressão por retenção</div>
+        <h3 data-i18n data-pt="Rotatividade ficou cara demais pra ignorar" data-en="Turnover got too expensive to ignore">Rotatividade ficou cara demais pra ignorar</h3>
+        <p data-i18n data-pt="Com mercado de trabalho aquecido, empresa que paga fora da curva perde gente pra concorrente — e recontratar custa mais do que ajustar salário a tempo." data-en="With a hot job market, companies that pay off-curve lose people to competitors — and rehiring costs more than adjusting salary in time.">Com mercado de trabalho aquecido, empresa que paga fora da curva perde gente pra concorrente — e recontratar custa mais do que ajustar salário a tempo.</p>
+      </div>
+      <div class="sol-item">
+        <div class="tag" data-i18n data-pt="Software B2B acessível" data-en="Affordable B2B software">Software B2B acessível</div>
+        <h3 data-i18n data-pt="SaaS baratou o &quot;software de gente grande&quot;" data-en="SaaS made &quot;big-company software&quot; cheap">SaaS baratou o "software de gente grande"</h3>
+        <p data-i18n data-pt="Ferramentas que só empresa grande tinha (CRM, ERP, BI) hoje têm versão SaaS acessível pra PME. Cargos e salários é uma das últimas categorias que ainda não teve essa democratização." data-en="Tools only big companies used to have (CRM, ERP, BI) now have affordable SaaS versions for small businesses. Compensation is one of the last categories that hasn't had this democratization yet.">Ferramentas que só empresa grande tinha (CRM, ERP, BI) hoje têm versão SaaS acessível pra PME. Cargos e salários é uma das últimas categorias que ainda não teve essa democratização.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="q reveal" id="validacao">
+  <div class="wrap">
+    <div class="q-head">
+      <div class="eyebrow"><span class="num" style="background:var(--amber)">6</span><span data-i18n data-pt="VALIDAÇÃO" data-en="VALIDATION">VALIDAÇÃO</span></div>
+      <h2 data-i18n data-pt="Isso não é só uma suposição" data-en="This isn't just a guess">Isso não é só uma suposição</h2>
+      <p data-i18n data-pt="Antes de desenhar a solução, conversamos com donos de pequenas empresas e gestores de RH pra entender como eles decidem — ou tentam decidir — salário hoje." data-en="Before designing the solution, we talked to small-business owners and HR managers to understand how they decide — or try to decide — salary today.">Antes de desenhar a solução, conversamos com donos de pequenas empresas e gestores de RH pra entender como eles decidem — ou tentam decidir — salário hoje.</p>
+    </div>
+
+    <div class="quote-grid">
+      <div class="quote-item">
+        <div class="mark">"</div>
+        <p class="quote" data-i18n data-pt="Eu decido o salário na conversa mesmo, olhando quanto a pessoa pediu. Não tenho referência nenhuma de mercado." data-en="I decide the salary right there in the conversation, based on what the person asked for. I don't have any market reference at all.">Eu decido o salário na conversa mesmo, olhando quanto a pessoa pediu. Não tenho referência nenhuma de mercado.</p>
+        <div class="who"><div class="name">Marcelo, 38</div><div class="role" data-i18n data-pt="Sócio de agência de marketing (12 funcionários)" data-en="Partner at a marketing agency (12 employees)">Sócio de agência de marketing (12 funcionários)</div></div>
+      </div>
+      <div class="quote-item">
+        <div class="mark">"</div>
+        <p class="quote" data-i18n data-pt="Já perdi gente boa porque descobri tarde demais que estava pagando abaixo do mercado." data-en="I've already lost good people because I found out too late that I was paying below market.">Já perdi gente boa porque descobri tarde demais que estava pagando abaixo do mercado.</p>
+        <div class="who"><div class="name">Fernanda, 41</div><div class="role" data-i18n data-pt="RH em empresa de logística" data-en="HR at a logistics company">RH em empresa de logística</div></div>
+      </div>
+      <div class="quote-item">
+        <div class="mark">"</div>
+        <p class="quote" data-i18n data-pt="Consultoria de cargos e salários custa mais do que eu gasto de folha inteira num mês. Simplesmente não é uma opção pra mim." data-en="Compensation consulting costs more than my entire monthly payroll. It's simply not an option for me.">Consultoria de cargos e salários custa mais do que eu gasto de folha inteira num mês. Simplesmente não é uma opção pra mim.</p>
+        <div class="who"><div class="name">Rodrigo, 33</div><div class="role" data-i18n data-pt="Fundador de e-commerce (8 funcionários)" data-en="E-commerce founder (8 employees)">Fundador de e-commerce (8 funcionários)</div></div>
+      </div>
+    </div>
+
+    <div class="traction-strip">
+      <div><div class="n"><span class="count" data-count-to="32">0</span></div><div class="l" data-i18n data-pt="empresas e gestores entrevistados na fase de descoberta" data-en="companies and managers interviewed during discovery">empresas e gestores entrevistados na fase de descoberta</div></div>
+      <div><div class="n"><span class="count" data-count-to="87" data-suffix="%">0%</span></div><div class="l" data-i18n data-pt="nunca usaram nenhuma referência formal de mercado pra definir salário" data-en="never used any formal market reference to set salary">nunca usaram nenhuma referência formal de mercado pra definir salário</div></div>
+      <div><div class="n" data-i18n data-pt="9 em 10" data-en="9 in 10">9 em 10</div><div class="l" data-i18n data-pt="pagariam por uma referência salarial confiável e acessível" data-en="would pay for a reliable, affordable salary reference">pagariam por uma referência salarial confiável e acessível</div></div>
+    </div>
+    <p class="source-note" data-i18n data-pt="Números de uma rodada exploratória de entrevistas com o público-alvo, com fins de validação inicial da ideia — não é uma amostra estatisticamente representativa." data-en="Figures from an exploratory round of interviews with the target audience, for initial idea validation — not a statistically representative sample.">Números de uma rodada exploratória de entrevistas com o público-alvo, com fins de validação inicial da ideia — não é uma amostra estatisticamente representativa.</p>
+  </div>
+</section>
+
+<section class="q reveal" id="confianca">
+  <div class="wrap">
+    <div class="q-head">
+      <div class="eyebrow"><span class="num" style="background:var(--green)">7</span><span data-i18n data-pt="POR QUE CONFIAR" data-en="WHY TRUST US">POR QUE CONFIAR</span></div>
+      <h2 data-i18n data-pt="Por que confiar no Precifica" data-en="Why trust Precifica">Por que confiar no Precifica</h2>
+      <p data-i18n data-pt="Somos uma plataforma em fase inicial e não escondemos isso — mas a metodologia por trás da faixa salarial é transparente desde o primeiro dia." data-en="We're an early-stage platform and we don't hide that — but the methodology behind the salary range has been transparent from day one.">Somos uma plataforma em fase inicial e não escondemos isso — mas a metodologia por trás da faixa salarial é transparente desde o primeiro dia.</p>
+    </div>
+
+    <div class="trust-grid">
+      <div class="trust-item"><span class="tick">✔</span><span data-i18n data-pt="Base de dados públicos oficiais (RAIS/CAGED, Sebrae)" data-en="Based on official public data (RAIS/CAGED, Sebrae)">Base de dados públicos oficiais (RAIS/CAGED, Sebrae)</span></div>
+      <div class="trust-item"><span class="tick">✔</span><span data-i18n data-pt="Comparação por cargo, senioridade e região" data-en="Comparison by role, seniority and region">Comparação por cargo, senioridade e região</span></div>
+      <div class="trust-item"><span class="tick">✔</span><span data-i18n data-pt="Validado com 32 empresas e gestores reais na fase de descoberta" data-en="Validated with 32 real companies and managers during discovery">Validado com 32 empresas e gestores reais na fase de descoberta</span></div>
+      <div class="trust-item"><span class="tick">✔</span><span data-i18n data-pt="Fórmula de cálculo aberta — sem caixa-preta" data-en="Open calculation formula — no black box">Fórmula de cálculo aberta — sem caixa-preta</span></div>
+      <div class="trust-item"><span class="tick">✔</span><span data-i18n data-pt="Desenvolvido para a realidade da PME brasileira" data-en="Built for the reality of Brazilian small businesses">Desenvolvido para a realidade da PME brasileira</span></div>
+      <div class="trust-item"><span class="tick">✔</span><span data-i18n data-pt="Base evolui com dados reais à medida que os pilotos entram" data-en="Database evolves with real data as pilots come on board">Base evolui com dados reais à medida que os pilotos entram</span></div>
+    </div>
+
+    <div class="proof-placeholder">
+      <div class="proof-label" data-i18n data-pt="Empresas piloto — vagas abertas agora" data-en="Pilot companies — spots open now">Empresas piloto — vagas abertas agora</div>
+      <p data-i18n-html data-pt-html="Ainda estamos fechando as primeiras 10–20 empresas piloto (acesso gratuito por 60 dias, veja o roteiro <a href=&quot;#roadmap&quot;>abaixo</a>). Este espaço vai reunir os logos e depoimentos reais assim que o piloto começar." data-en-html="We're still closing the first 10–20 pilot companies (free access for 60 days, see the roadmap <a href=&quot;#roadmap&quot;>below</a>). This space will feature real logos and testimonials once the pilot starts.">Ainda estamos fechando as primeiras 10–20 empresas piloto (acesso gratuito por 60 dias, veja o roteiro <a href="#roadmap">abaixo</a>). Este espaço vai reunir os logos e depoimentos reais assim que o piloto começar.</p>
+      <a class="btn btn-ghost" href="#lista" style="margin-top:14px;" data-i18n data-pt="Quero ser uma empresa piloto" data-en="I want to be a pilot company">Quero ser uma empresa piloto</a>
+    </div>
+  </div>
+</section>
+
+<section class="q reveal" id="modelo">
+  <div class="wrap">
+    <div class="q-head">
+      <div class="eyebrow"><span class="num" style="background:var(--green)">8</span><span data-i18n data-pt="MODELO DE NEGÓCIO" data-en="BUSINESS MODEL">MODELO DE NEGÓCIO</span></div>
+      <h2 data-i18n data-pt="Como o Precifica gera receita" data-en="How Precifica makes money">Como o Precifica gera receita</h2>
+      <p data-i18n data-pt="Modelo SaaS B2B: a calculadora individual (freelancer) é gratuita e serve como isca e fonte de dado. A receita vem da assinatura das empresas, que usam a ferramenta continuamente pra gerir a folha salarial do time." data-en="B2B SaaS model: the individual (freelancer) calculator is free and serves as a lead magnet and data source. Revenue comes from company subscriptions, who use the tool continuously to manage their team's payroll.">Modelo SaaS B2B: a calculadora individual (freelancer) é gratuita e serve como isca e fonte de dado. A receita vem da assinatura das empresas, que usam a ferramenta continuamente pra gerir a folha salarial do time.</p>
+    </div>
+
+    <div class="biz-grid">
+      <div class="biz-item">
+        <div class="n" data-i18n data-pt="Gratuito" data-en="Free">Gratuito</div>
+        <h3 data-i18n data-pt="Calculadora individual" data-en="Individual calculator">Calculadora individual</h3>
+        <p data-i18n data-pt="Prestadores de serviço usam de graça pra precificar — isso gera tráfego, marca e o primeiro dado de mercado." data-en="Service providers use it for free to set prices — this generates traffic, brand awareness, and the first market data.">Prestadores de serviço usam de graça pra precificar — isso gera tráfego, marca e o primeiro dado de mercado.</p>
+      </div>
+      <div class="biz-item">
+        <div class="n" data-i18n data-pt="Assinatura B2B" data-en="B2B subscription">Assinatura B2B</div>
+        <h3 data-i18n data-pt="Precifica para Empresas" data-en="Precifica for Companies">Precifica para Empresas</h3>
+        <p data-i18n data-pt="Assinatura mensal por empresa: painel de cargos, histórico, alertas de defasagem e relatórios — o produto principal." data-en="Monthly subscription per company: role dashboard, history, underpayment alerts and reports — the core product.">Assinatura mensal por empresa: painel de cargos, histórico, alertas de defasagem e relatórios — o produto principal.</p>
+      </div>
+      <div class="biz-item">
+        <div class="n" data-i18n data-pt="Parcerias" data-en="Partnerships">Parcerias</div>
+        <h3 data-i18n data-pt="Contadores e associações" data-en="Accountants and associations">Contadores e associações</h3>
+        <p data-i18n data-pt="Escritórios de contabilidade e associações comerciais indicam o Precifica pros seus clientes PME, em troca de comissão recorrente." data-en="Accounting firms and business associations refer Precifica to their small-business clients, in exchange for a recurring commission.">Escritórios de contabilidade e associações comerciais indicam o Precifica pros seus clientes PME, em troca de comissão recorrente.</p>
+      </div>
+    </div>
+
+    <div class="q-head" style="margin-top:48px;margin-bottom:24px;max-width:100%;">
+      <div class="eyebrow" style="font-size:11px;"><span class="num" style="width:20px;height:20px;font-size:11px;background:var(--slate)">?</span><span data-i18n data-pt="O PROBLEMA DO DADO ZERO" data-en="THE COLD-START DATA PROBLEM">O PROBLEMA DO DADO ZERO</span></div>
+      <h3 style="font-size:22px;font-weight:600;margin-top:12px;" data-i18n data-pt="De onde vem o dado, antes de existir comunidade?" data-en="Where does the data come from, before a community exists?">De onde vem o dado, antes de existir comunidade?</h3>
+      <p style="color:var(--slate);font-size:14.5px;margin-top:10px;line-height:1.6;" data-i18n data-pt="Todo produto de benchmarking tem esse problema: o dado só é bom quando tem volume, e o volume só vem depois que o dado é bom. É assim que resolvemos isso nas primeiras fases:" data-en="Every benchmarking product has this problem: the data is only good once there's volume, and volume only comes after the data is good. Here's how we solve this in the early phases:">Todo produto de benchmarking tem esse problema: o dado só é bom quando tem volume, e o volume só vem depois que o dado é bom. É assim que resolvemos isso nas primeiras fases:</p>
+    </div>
+
+    <div class="table-scroll">
+    <div class="diff-row">
+      <div class="h" data-i18n data-pt="Fase" data-en="Phase">Fase</div>
+      <div class="h" data-i18n data-pt="Fonte do dado" data-en="Data source">Fonte do dado</div>
+      <div class="h" data-i18n data-pt="Objetivo" data-en="Goal">Objetivo</div>
+      <div data-i18n data-pt="1. Curadoria" data-en="1. Curation">1. Curadoria</div><div data-i18n data-pt="Dados públicos (RAIS/CAGED, pesquisas Sebrae e de mercado)" data-en="Public data (RAIS/CAGED, Sebrae and market research)">Dados públicos (RAIS/CAGED, pesquisas Sebrae e de mercado)</div><div data-i18n data-pt="Ter uma base inicial defensável, mesmo sem usuários" data-en="Have a defensible starting database, even with no users">Ter uma base inicial defensável, mesmo sem usuários</div>
+      <div data-i18n data-pt="2. Piloto" data-en="2. Pilot">2. Piloto</div><div data-i18n data-pt="10–20 empresas trocam acesso gratuito por compartilhar faixas praticadas" data-en="10–20 companies trade free access for sharing the ranges they actually pay">10–20 empresas trocam acesso gratuito por compartilhar faixas praticadas</div><div data-i18n data-pt="Validar e calibrar os dados com a realidade" data-en="Validate and calibrate the data against reality">Validar e calibrar os dados com a realidade</div>
+      <div data-i18n data-pt="3. Rede" data-en="3. Network">3. Rede</div><div data-i18n data-pt="Uso recorrente de empresas pagantes + calculadora de freelancers" data-en="Recurring use by paying companies + freelancer calculator">Uso recorrente de empresas pagantes + calculadora de freelancers</div><div data-i18n data-pt="Dado se atualiza sozinho, motor de benchmark cresce" data-en="Data updates itself, the benchmark engine grows">Dado se atualiza sozinho, motor de benchmark cresce</div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="q reveal" id="planos">
+  <div class="wrap">
+    <div class="q-head">
+      <div class="eyebrow"><span class="num" style="background:var(--ink)">9</span><span data-i18n data-pt="PLANOS" data-en="PRICING">PLANOS</span></div>
+      <h2 data-i18n data-pt="Grátis pra profissional, assinatura pra empresa" data-en="Free for professionals, subscription for companies">Grátis pra profissional, assinatura pra empresa</h2>
+      <p data-i18n data-pt="A calculadora individual sempre vai ser gratuita. A empresa assina o Precifica pra ter a régua salarial completa do time, com um preço pensado pra caber no orçamento de uma PME — não de uma multinacional." data-en="The individual calculator will always be free. Companies subscribe to Precifica to get the full salary benchmark for their team, at a price built to fit a small-business budget — not a multinational's.">A calculadora individual sempre vai ser gratuita. A empresa assina o Precifica pra ter a régua salarial completa do time, com um preço pensado pra caber no orçamento de uma PME — não de uma multinacional.</p>
+    </div>
+
+    <div class="plans-toggle" id="plansToggle">
+      <button class="toggle-btn active" data-plan="free" data-i18n data-pt="Grátis (individual)" data-en="Free (individual)">Grátis (individual)</button>
+      <button class="toggle-btn" data-plan="premium" data-i18n data-pt="Empresa" data-en="Company">Empresa</button>
+    </div>
+
+    <div class="plans-grid">
+      <div class="plan-card active-plan" data-plan-card="free">
+        <div class="plan-name" data-i18n data-pt="Grátis" data-en="Free">Grátis</div>
+        <div class="plan-price">R$ 0<span data-i18n data-pt=" /sempre" data-en=" /forever"> /sempre</span></div>
+        <ul class="plan-features">
+          <li data-i18n data-pt="Calculadora de preço por categoria, experiência e região" data-en="Price calculator by category, experience and region">Calculadora de preço por categoria, experiência e região</li>
+          <li data-i18n data-pt="Faixa de preço sugerida, sem limite de uso" data-en="Suggested price range, unlimited use">Faixa de preço sugerida, sem limite de uso</li>
+          <li data-i18n data-pt="Uso individual — prestadores de serviço autônomos" data-en="Individual use — independent service providers">Uso individual — prestadores de serviço autônomos</li>
+          <li data-i18n data-pt="Sem cartão de crédito, sem pegadinha" data-en="No credit card, no catch">Sem cartão de crédito, sem pegadinha</li>
+        </ul>
+      </div>
+      <div class="plan-card" data-plan-card="premium">
+        <div class="plan-tag" data-i18n data-pt="Fundadores: condição especial de lançamento" data-en="Founders: special launch pricing">Fundadores: condição especial de lançamento</div>
+        <div class="plan-name" data-i18n data-pt="Empresa" data-en="Company">Empresa</div>
+        <div class="plan-price"><span data-i18n data-pt="A definir" data-en="TBD">A definir</span><span data-i18n data-pt=" /mês por empresa" data-en=" /month per company"> /mês por empresa</span></div>
+        <ul class="plan-features">
+          <li data-i18n data-pt="Cargos e colaboradores ilimitados" data-en="Unlimited roles and employees">Cargos e colaboradores ilimitados</li>
+          <li data-i18n data-pt="Painel de faixa salarial por cargo, senioridade e região" data-en="Salary-range dashboard by role, seniority and region">Painel de faixa salarial por cargo, senioridade e região</li>
+          <li data-i18n data-pt="Alerta de defasagem quando um cargo foge do mercado" data-en="Underpayment alert when a role falls out of market range">Alerta de defasagem quando um cargo foge do mercado</li>
+          <li data-i18n data-pt="Histórico e relatórios pra decisão de reajuste" data-en="History and reports for raise decisions">Histórico e relatórios pra decisão de reajuste</li>
+          <li data-i18n data-pt="Suporte prioritário por e-mail" data-en="Priority email support">Suporte prioritário por e-mail</li>
+        </ul>
+        <div class="price-test">
+          <p data-i18n data-pt="Esse plano faria sentido no orçamento da sua empresa?" data-en="Would this plan make sense for your company's budget?">Esse plano faria sentido no orçamento da sua empresa?</p>
+          <div class="price-test-btns">
+            <button type="button" class="price-btn" data-sinal="sim" data-i18n data-pt="💰 Pagaria pelo plano" data-en="💰 Would pay for it">💰 Pagaria pelo plano</button>
+            <button type="button" class="price-btn" data-sinal="nao" data-i18n data-pt="🤔 Não pagaria" data-en="🤔 Wouldn't pay">🤔 Não pagaria</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="source-note" data-i18n data-pt="Preço ainda em definição — estamos validando o valor certo antes de fechar. Seu clique acima nos ajuda a calibrar." data-en="Price still being defined — we're validating the right value before finalizing it. Your click above helps us calibrate.">Preço ainda em definição — estamos validando o valor certo antes de fechar. Seu clique acima nos ajuda a calibrar.</p>
+  </div>
+</section>
+
+<section class="q reveal" id="faq">
+  <div class="wrap">
+    <div class="q-head">
+      <div class="eyebrow"><span class="num" style="background:var(--amber)">10</span><span data-i18n data-pt="PERGUNTAS FREQUENTES" data-en="FREQUENTLY ASKED QUESTIONS">PERGUNTAS FREQUENTES</span></div>
+      <h2 data-i18n data-pt="Antes de você perguntar" data-en="Before you ask">Antes de você perguntar</h2>
+      <p data-i18n data-pt="Respostas diretas sobre dados, preço e como o Precifica funciona hoje — sem letra miúda." data-en="Straight answers about data, pricing, and how Precifica works today — no fine print.">Respostas diretas sobre dados, preço e como o Precifica funciona hoje — sem letra miúda.</p>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary data-i18n data-pt="Posso confiar nos dados?" data-en="Can I trust the data?">Posso confiar nos dados?</summary>
+        <p data-i18n data-pt="A base de partida vem de dados públicos oficiais (RAIS/CAGED, pesquisas Sebrae) — não é uma opinião nossa. Conforme os pilotos entram, cruzamos com faixas praticadas por empresas reais para calibrar." data-en="The starting database comes from official public data (RAIS/CAGED, Sebrae research) — it's not our opinion. As pilots come on board, we cross-check with real ranges practiced by real companies to calibrate.">A base de partida vem de dados públicos oficiais (RAIS/CAGED, pesquisas Sebrae) — não é uma opinião nossa. Conforme os pilotos entram, cruzamos com faixas praticadas por empresas reais para calibrar.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n data-pt="Como os salários são calculados?" data-en="How are salaries calculated?">Como os salários são calculados?</summary>
+        <p data-i18n data-pt="A faixa sai de uma fórmula aberta: valor-base do cargo × ajuste por senioridade × ajuste por região. Sem caixa-preta — o mesmo cálculo que você vê rodar na calculadora acima. A busca de região reconhece qualquer cidade, estado ou UF do Brasil, mas hoje classifica o resultado em 3 perfis (capital, cidade média, interior) — ainda não temos uma média real por cidade específica; isso está no roadmap, condicionado a uma base de dados como RAIS/CAGED." data-en="The range comes from an open formula: role base value × seniority adjustment × region adjustment. No black box — it's the same calculation you see running in the calculator above. The region search recognizes any Brazilian city, state or abbreviation, but today classifies the result into 3 profiles (capital, mid-size city, smaller town) — we don't yet have a real average for each specific city; that's on the roadmap, pending a database like RAIS/CAGED.">A faixa sai de uma fórmula aberta: valor-base do cargo × ajuste por senioridade × ajuste por região. Sem caixa-preta — o mesmo cálculo que você vê rodar na calculadora acima. A busca de região reconhece qualquer cidade, estado ou UF do Brasil, mas hoje classifica o resultado em 3 perfis (capital, cidade média, interior) — ainda não temos uma média real por cidade específica; isso está no roadmap, condicionado a uma base de dados como RAIS/CAGED.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n data-pt="Existe inteligência artificial no cálculo?" data-en="Is there AI in the calculation?">Existe inteligência artificial no cálculo?</summary>
+        <p data-i18n data-pt="Hoje, não — o modelo atual é estatístico e transparente, baseado em dados públicos e nos ajustes explicados acima. Refinar com aprendizado de máquina é um passo do roadmap, depois que tivermos volume real de dados dos pilotos." data-en="Not today — the current model is statistical and transparent, based on public data and the adjustments explained above. Refining it with machine learning is a roadmap step, once we have real data volume from pilots.">Hoje, não — o modelo atual é estatístico e transparente, baseado em dados públicos e nos ajustes explicados acima. Refinar com aprendizado de máquina é um passo do roadmap, depois que tivermos volume real de dados dos pilotos.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n data-pt="Qual a frequência de atualização?" data-en="How often is it updated?">Qual a frequência de atualização?</summary>
+        <p data-i18n data-pt="Enquanto estamos em fase de pilotos, a base é revisada periodicamente à mão. A meta é atualização contínua assim que houver uso recorrente de empresas pagantes." data-en="While we're in the pilot phase, the database is reviewed manually on a regular basis. The goal is continuous updates once there's recurring use from paying companies.">Enquanto estamos em fase de pilotos, a base é revisada periodicamente à mão. A meta é atualização contínua assim que houver uso recorrente de empresas pagantes.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n data-pt="Serve para empresas pequenas?" data-en="Is it for small companies?">Serve para empresas pequenas?</summary>
+        <p data-i18n data-pt="Sim — é exatamente o público que o Precifica foi desenhado para atender: PMEs contratando o 5º ao 20º funcionário, sem RH estruturado." data-en="Yes — it's exactly the audience Precifica was designed for: small businesses hiring their 5th to 20th employee, with no structured HR.">Sim — é exatamente o público que o Precifica foi desenhado para atender: PMEs contratando o 5º ao 20º funcionário, sem RH estruturado.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n data-pt="Serve para empresas grandes?" data-en="Is it for large companies?">Serve para empresas grandes?</summary>
+        <p data-i18n data-pt="Dá pra usar, mas hoje o produto é otimizado para PME. Empresas grandes já costumam ter acesso a consultorias de cargos e salários tradicionais." data-en="It can be used, but today the product is optimized for small businesses. Large companies usually already have access to traditional compensation consulting.">Dá pra usar, mas hoje o produto é otimizado para PME. Empresas grandes já costumam ter acesso a consultorias de cargos e salários tradicionais.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n data-pt="Quantos cargos existem na calculadora?" data-en="How many roles are in the calculator?">Quantos cargos existem na calculadora?</summary>
+        <p data-i18n data-pt="24 cargos e categorias hoje (16 pra empresas, 8 pra prestadores de serviço) — e a lista cresce conforme o painel para empresas avança." data-en="24 roles and categories today (16 for companies, 8 for service providers) — and the list grows as the company dashboard advances.">24 cargos e categorias hoje (16 pra empresas, 8 pra prestadores de serviço) — e a lista cresce conforme o painel para empresas avança.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n data-pt="Preciso cadastrar cartão de crédito?" data-en="Do I need to enter a credit card?">Preciso cadastrar cartão de crédito?</summary>
+        <p data-i18n data-pt="Não. A calculadora individual é gratuita pra sempre, sem cartão. O piloto para empresas também é gratuito por 60 dias." data-en="No. The individual calculator is free forever, no card needed. The company pilot is also free for 60 days.">Não. A calculadora individual é gratuita pra sempre, sem cartão. O piloto para empresas também é gratuito por 60 dias.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n data-pt="Existe teste gratuito?" data-en="Is there a free trial?">Existe teste gratuito?</summary>
+        <p data-i18n data-pt="Sim — a calculadora acima já é o teste, sem cadastro. Para empresas, o piloto gratuito de 60 dias é a forma de testar o painel completo." data-en="Yes — the calculator above is already the trial, no sign-up needed. For companies, the free 60-day pilot is the way to test the full dashboard.">Sim — a calculadora acima já é o teste, sem cadastro. Para empresas, o piloto gratuito de 60 dias é a forma de testar o painel completo.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n data-pt="Quanto custa o plano Empresa?" data-en="How much does the Company plan cost?">Quanto custa o plano Empresa?</summary>
+        <p data-i18n data-pt="Ainda em definição — estamos validando o valor certo com quem vai usar antes de fechar um preço final. Fundadores/pilotos têm condição especial de lançamento." data-en="Still being defined — we're validating the right value with actual users before setting a final price. Founders/pilots get special launch pricing.">Ainda em definição — estamos validando o valor certo com quem vai usar antes de fechar um preço final. Fundadores/pilotos têm condição especial de lançamento.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n data-pt="Existe suporte?" data-en="Is there support?">Existe suporte?</summary>
+        <p data-i18n-html data-pt-html="Sim, suporte prioritário por e-mail no plano Empresa. Dúvidas gerais podem ir direto pro nosso <a href=&quot;mailto:Guiscavalli@gmail.com&quot; data-contact-email>e-mail de contato</a>." data-en-html="Yes, priority email support on the Company plan. General questions can go straight to our <a href=&quot;mailto:Guiscavalli@gmail.com&quot; data-contact-email>contact email</a>.">Sim, suporte prioritário por e-mail no plano Empresa. Dúvidas gerais podem ir direto pro nosso <a href="mailto:Guiscavalli@gmail.com" data-contact-email>e-mail de contato</a>.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="q reveal" id="roadmap">
+  <div class="wrap">
+    <div class="q-head">
+      <div class="eyebrow"><span class="num" style="background:var(--rust)">11</span><span data-i18n data-pt="PRÓXIMOS PASSOS" data-en="NEXT STEPS">PRÓXIMOS PASSOS</span></div>
+      <h2 data-i18n data-pt="Do protótipo ao produto pago" data-en="From prototype to paid product">Do protótipo ao produto pago</h2>
+      <p data-i18n data-pt="Um roteiro enxuto focado em conseguir empresas pilotos pagantes o quanto antes — não em construir tudo antes de testar." data-en="A lean roadmap focused on landing paying pilot companies as soon as possible — not on building everything before testing.">Um roteiro enxuto focado em conseguir empresas pilotos pagantes o quanto antes — não em construir tudo antes de testar.</p>
+    </div>
+
+    <div class="roadmap-grid">
+      <div class="road-item">
+        <div class="step">1</div>
+        <h3 data-i18n data-pt="Piloto pago" data-en="Paid pilot">Piloto pago</h3>
+        <p data-i18n data-pt="10–20 empresas pilotos usando o painel de graça por 60 dias, em troca de compartilhar faixas salariais reais." data-en="10–20 pilot companies using the dashboard for free for 60 days, in exchange for sharing real salary ranges.">10–20 empresas pilotos usando o painel de graça por 60 dias, em troca de compartilhar faixas salariais reais.</p>
+        <span class="when" data-i18n data-pt="Curto prazo" data-en="Short term">Curto prazo</span>
+      </div>
+      <div class="road-item">
+        <div class="step">2</div>
+        <h3 data-i18n data-pt="MVP + dado público" data-en="MVP + public data">MVP + dado público</h3>
+        <p data-i18n data-pt="Painel funcional com cargos mais comuns, calibrado com dado público (RAIS/CAGED) + dado dos pilotos." data-en="Functional dashboard with the most common roles, calibrated with public data (RAIS/CAGED) + pilot data.">Painel funcional com cargos mais comuns, calibrado com dado público (RAIS/CAGED) + dado dos pilotos.</p>
+        <span class="when" data-i18n data-pt="1–2 meses" data-en="1–2 months">1–2 meses</span>
+      </div>
+      <div class="road-item">
+        <div class="step">3</div>
+        <h3 data-i18n data-pt="Distribuição" data-en="Distribution">Distribuição</h3>
+        <p data-i18n data-pt="Parcerias com 2–3 escritórios de contabilidade ou associações comerciais pra indicar o produto pros clientes PME." data-en="Partnerships with 2–3 accounting firms or business associations to refer the product to their small-business clients.">Parcerias com 2–3 escritórios de contabilidade ou associações comerciais pra indicar o produto pros clientes PME.</p>
+        <span class="when" data-i18n data-pt="3–4 meses" data-en="3–4 months">3–4 meses</span>
+      </div>
+      <div class="road-item">
+        <div class="step">4</div>
+        <h3 data-i18n data-pt="Cobrança ativa" data-en="Active billing">Cobrança ativa</h3>
+        <p data-i18n data-pt="Conversão dos pilotos pro plano pago + primeiras vendas via os canais de distribuição validados." data-en="Converting pilots to the paid plan + first sales via validated distribution channels.">Conversão dos pilotos pro plano pago + primeiras vendas via os canais de distribuição validados.</p>
+        <span class="when" data-i18n data-pt="6 meses+" data-en="6 months+">6 meses+</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="q reveal" id="sobre">
+  <div class="wrap">
+    <div class="q-head">
+      <div class="eyebrow"><span class="num" style="background:var(--green)">12</span><span data-i18n data-pt="SOBRE" data-en="ABOUT">SOBRE</span></div>
+      <h2 data-i18n data-pt="Por que existe o Precifica" data-en="Why Precifica exists">Por que existe o Precifica</h2>
+      <p data-i18n data-pt="O Precifica nasceu de um problema real: 24 milhões de pequenos negócios no Brasil não têm acesso a uma referência salarial confiável — consultoria de cargos e salários é cara demais pra esse porte, e sobra decidir salário no achismo, copiando concorrente ou negociando no improviso." data-en="Precifica was born from a real problem: 24 million small businesses in Brazil don't have access to a reliable salary reference — compensation consulting is too expensive for their size, leaving them to decide salary by guesswork, copying competitors, or negotiating on the fly.">O Precifica nasceu de um problema real: 24 milhões de pequenos negócios no Brasil não têm acesso a uma referência salarial confiável — consultoria de cargos e salários é cara demais pra esse porte, e sobra decidir salário no achismo, copiando concorrente ou negociando no improviso.</p>
+      <p style="margin-top:14px;" data-i18n data-pt="Somos uma plataforma que transforma essa decisão em algo baseado em dado, não em intuição. Cruzamos cargo, senioridade e região pra sugerir uma faixa salarial justa — o mesmo motor também ajuda prestadores de serviço autônomos a precificar o próprio trabalho." data-en="We're a platform that turns that decision into something data-driven, not intuition-driven. We cross-reference role, seniority and region to suggest a fair salary range — the same engine also helps independent service providers price their own work.">Somos uma plataforma que transforma essa decisão em algo baseado em dado, não em intuição. Cruzamos cargo, senioridade e região pra sugerir uma faixa salarial justa — o mesmo motor também ajuda prestadores de serviço autônomos a precificar o próprio trabalho.</p>
+      <p style="margin-top:14px;" data-i18n data-pt="Queremos ser a régua salarial que toda PME brasileira devia ter e não tem — dando a mesma segurança de decisão que hoje só empresa grande consegue pagar pra ter." data-en="We want to be the salary benchmark every Brazilian small business should have and doesn't — giving them the same decision confidence that today only big companies can afford.">Queremos ser a régua salarial que toda PME brasileira devia ter e não tem — dando a mesma segurança de decisão que hoje só empresa grande consegue pagar pra ter.</p>
+      <p style="margin-top:14px;" data-i18n data-pt="O projeto é construído por uma equipe multidisciplinar de seis pessoas, em fase de pré-incubação — comprometida em não lançar nenhum número no site sem uma fonte por trás." data-en="The project is built by a multidisciplinary team of six people, in pre-incubation phase — committed to never publishing a number on this site without a source behind it.">O projeto é construído por uma equipe multidisciplinar de seis pessoas, em fase de pré-incubação — comprometida em não lançar nenhum número no site sem uma fonte por trás.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner reveal" id="lista">
+  <div class="wrap">
+    <div class="eyebrow" style="justify-content:center;color:rgba(246,241,231,.6)" data-i18n data-pt="LISTA DE ESPERA" data-en="WAITLIST">LISTA DE ESPERA</div>
+    <h2 style="margin-top:14px;" data-i18n data-pt="Seja uma das primeiras empresas a usar o Precifica" data-en="Be one of the first companies to use Precifica">Seja uma das primeiras empresas a usar o Precifica</h2>
+    <p data-i18n data-pt="Estamos abrindo acesso antecipado para empresas (e também prestadores de serviço) que querem parar de definir salário e preço no achismo. Deixe seu e-mail e te avisamos assim que o produto estiver disponível." data-en="We're opening early access for companies (and also service providers) who want to stop setting salary and price by guesswork. Leave your email and we'll let you know as soon as the product is available.">Estamos abrindo acesso antecipado para empresas (e também prestadores de serviço) que querem parar de definir salário e preço no achismo. Deixe seu e-mail e te avisamos assim que o produto estiver disponível.</p>
+
+    <form class="waitlist-form" id="waitlistForm" action="https://formspree.io/f/xqevwbdy" method="POST">
+      <select name="perfil" class="waitlist-select" required>
+        <option value="" disabled selected data-pt="Eu sou..." data-en="I am...">Eu sou...</option>
+        <option value="Empresa / RH" data-pt="Empresa / RH" data-en="Company / HR">Empresa / RH</option>
+        <option value="Prestador de serviço" data-pt="Prestador de serviço" data-en="Service provider">Prestador de serviço</option>
+      </select>
+      <input type="email" name="email" placeholder="seu@email.com" required>
+      <input type="hidden" name="sinal_preco" id="sinalPreco" value="">
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+      <button class="btn btn-solid" type="submit" data-i18n data-pt="Entrar na lista" data-en="Join the waitlist">Entrar na lista</button>
+    </form>
+    <p class="waitlist-ok" id="waitlistOk" role="status" data-i18n data-pt="✓ Recebemos seu e-mail — obrigado! Em breve entramos em contato." data-en="✓ We've received your email — thank you! We'll be in touch soon.">✓ Recebemos seu e-mail — obrigado! Em breve entramos em contato.</p>
+    <p class="waitlist-note" data-i18n-html data-pt-html="Sem spam. Ao entrar, você concorda com nossa <button type=&quot;button&quot; class=&quot;link-btn&quot; data-modal=&quot;privacidade&quot;>Política de Privacidade</button>." data-en-html="No spam. By joining, you agree to our <button type=&quot;button&quot; class=&quot;link-btn&quot; data-modal=&quot;privacidade&quot;>Privacy Policy</button>.">Sem spam. Ao entrar, você concorda com nossa <button type="button" class="link-btn" data-modal="privacidade">Política de Privacidade</button>.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div class="sig" data-i18n data-pt="PRECIFICA — A RÉGUA SALARIAL QUE A SUA PME NÃO TINHA" data-en="PRECIFICA — THE SALARY BENCHMARK YOUR BUSINESS NEVER HAD">PRECIFICA — A RÉGUA SALARIAL QUE A SUA PME NÃO TINHA</div>
+    <div class="dots" style="gap:16px;">
+      <a href="mailto:Guiscavalli@gmail.com" data-contact-email style="font-family:'IBM Plex Mono';font-size:12px;color:var(--slate);text-decoration:none;">Guiscavalli@gmail.com</a>
+      <button type="button" class="footer-link" data-modal="termos" data-i18n data-pt="Termos de Uso" data-en="Terms of Use">Termos de Uso</button>
+      <button type="button" class="footer-link" data-modal="privacidade" data-i18n data-pt="Privacidade" data-en="Privacy">Privacidade</button>
+      <span style="font-family:'IBM Plex Mono';font-size:12px;color:var(--slate);" data-i18n data-pt="Feito no Brasil 🇧🇷" data-en="Made in Brazil 🇧🇷">Feito no Brasil 🇧🇷</span>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="termosTitle">
+    <button type="button" class="modal-close" id="modalClose" aria-label="Fechar">×</button>
+
+    <div class="modal-panel" id="modal-termos">
+      <h3 id="termosTitle" data-i18n data-pt="Termos de Uso" data-en="Terms of Use">Termos de Uso</h3>
+      <p class="modal-updated" data-i18n data-pt="Última atualização: julho de 2026" data-en="Last updated: July 2026">Última atualização: julho de 2026</p>
+      <p data-i18n data-pt="O Precifica é uma ferramenta gratuita de referência de preços e salários, oferecida &quot;como está&quot;, em fase inicial de desenvolvimento. As estimativas geradas pela calculadora são ilustrativas, baseadas em faixas médias de mercado, e não substituem uma negociação, avaliação profissional ou consultoria trabalhista/contábil." data-en="Precifica is a free price and salary reference tool, offered &quot;as is&quot;, in an early stage of development. The estimates generated by the calculator are illustrative, based on average market ranges, and do not replace a negotiation, professional assessment, or labor/accounting consulting.">O Precifica é uma ferramenta gratuita de referência de preços e salários, oferecida "como está", em fase inicial de desenvolvimento. As estimativas geradas pela calculadora são ilustrativas, baseadas em faixas médias de mercado, e não substituem uma negociação, avaliação profissional ou consultoria trabalhista/contábil.</p>
+      <p data-i18n data-pt="Ao usar o site, você concorda que: (1) os valores sugeridos são apenas uma referência; (2) o Precifica não se responsabiliza por decisões comerciais, contratuais ou trabalhistas tomadas com base nessas estimativas; (3) o serviço pode mudar, incluir cobrança em recursos futuros (plano Premium) ou ser descontinuado a qualquer momento, sempre com aviso prévio a quem já usa a plataforma." data-en="By using this site, you agree that: (1) the suggested values are just a reference; (2) Precifica is not responsible for commercial, contractual or labor decisions made based on these estimates; (3) the service may change, include charges for future features (Premium plan), or be discontinued at any time, always with prior notice to current users.">Ao usar o site, você concorda que: (1) os valores sugeridos são apenas uma referência; (2) o Precifica não se responsabiliza por decisões comerciais, contratuais ou trabalhistas tomadas com base nessas estimativas; (3) o serviço pode mudar, incluir cobrança em recursos futuros (plano Premium) ou ser descontinuado a qualquer momento, sempre com aviso prévio a quem já usa a plataforma.</p>
+      <p data-i18n-html data-pt-html="Dúvidas sobre estes termos podem ser enviadas para <a href=&quot;mailto:Guiscavalli@gmail.com&quot; data-contact-email>Guiscavalli@gmail.com</a>." data-en-html="Questions about these terms can be sent to <a href=&quot;mailto:Guiscavalli@gmail.com&quot; data-contact-email>Guiscavalli@gmail.com</a>.">Dúvidas sobre estes termos podem ser enviadas para <a href="mailto:Guiscavalli@gmail.com" data-contact-email>Guiscavalli@gmail.com</a>.</p>
+    </div>
+
+    <div class="modal-panel" id="modal-privacidade" style="display:none;">
+      <h3 id="privacyTitle" data-i18n data-pt="Política de Privacidade" data-en="Privacy Policy">Política de Privacidade</h3>
+      <p class="modal-updated" data-i18n data-pt="Última atualização: julho de 2026" data-en="Last updated: July 2026">Última atualização: julho de 2026</p>
+      <p data-i18n data-pt="Coletamos apenas o e-mail e o perfil (&quot;prestador&quot; ou &quot;empresa&quot;) informados voluntariamente no formulário de lista de espera. Usamos esses dados exclusivamente para avisar sobre o lançamento do produto e novidades diretamente relacionadas — nunca para outros fins, e nunca vendemos ou compartilhamos com terceiros para fins de marketing." data-en="We only collect the email and profile (&quot;service provider&quot; or &quot;company&quot;) voluntarily provided in the waitlist form. We use this data exclusively to notify you about the product launch and directly related updates — never for other purposes, and we never sell or share it with third parties for marketing purposes.">Coletamos apenas o e-mail e o perfil ("prestador" ou "empresa") informados voluntariamente no formulário de lista de espera. Usamos esses dados exclusivamente para avisar sobre o lançamento do produto e novidades diretamente relacionadas — nunca para outros fins, e nunca vendemos ou compartilhamos com terceiros para fins de marketing.</p>
+      <p data-i18n-html data-pt-html="Os dados são processados por um serviço terceirizado de formulários (Formspree) até migrarmos para infraestrutura própria. Você pode pedir a remoção do seu e-mail da nossa lista a qualquer momento, respondendo qualquer e-mail nosso ou escrevendo para <a href=&quot;mailto:Guiscavalli@gmail.com&quot; data-contact-email>Guiscavalli@gmail.com</a>." data-en-html="Your data is processed by a third-party form service (Formspree) until we migrate to our own infrastructure. You can request removal of your email from our list at any time, by replying to any of our emails or writing to <a href=&quot;mailto:Guiscavalli@gmail.com&quot; data-contact-email>Guiscavalli@gmail.com</a>.">Os dados são processados por um serviço terceirizado de formulários (Formspree) até migrarmos para infraestrutura própria. Você pode pedir a remoção do seu e-mail da nossa lista a qualquer momento, respondendo qualquer e-mail nosso ou escrevendo para <a href="mailto:Guiscavalli@gmail.com" data-contact-email>Guiscavalli@gmail.com</a>.</p>
+      <p data-i18n data-pt="Este site não usa cookies de rastreamento nem armazena dados de navegação além do necessário para seu funcionamento básico." data-en="This site does not use tracking cookies or store browsing data beyond what's necessary for its basic operation.">Este site não usa cookies de rastreamento nem armazena dados de navegação além do necessário para seu funcionamento básico.</p>
+    </div>
+
+  </div>
+</div>
+
+<script src="locations.js"></script>
+<script src="i18n.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

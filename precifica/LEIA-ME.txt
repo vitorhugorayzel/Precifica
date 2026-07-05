@@ -1,0 +1,94 @@
+PRECIFICA — ESTRUTURA DO SITE
+================================
+
+Arquivos:
+  index.html    → estrutura da página (HTML puro, sem estilo nem lógica misturados)
+  styles.css    → todo o visual do site (cores, layout, responsividade)
+  script.js     → toda a lógica (calculadora, menu mobile, modais, lista de espera)
+  i18n.js       → motor de troca de idioma (Português / English)
+  locations.js  → base de cidades/estados usada na busca de região
+  og-image.png  → imagem de pré-visualização ao compartilhar o link (WhatsApp, redes sociais)
+  robots.txt    → libera indexação pelos buscadores e aponta o sitemap
+  sitemap.xml   → sitemap básico pra ajudar o Google a indexar a página
+  LEIA-ME.txt   → este arquivo
+
+OBS: a parte de cadastro/login (Supabase) foi removida por enquanto pra
+apresentação. Pode ser reintroduzida depois — o script.js antigo com essa
+lógica fica de referência se precisar.
+
+Todos os arquivos precisam ficar SEMPRE na mesma pasta, um do lado do outro.
+Se você mover só o index.html sem os outros, o site perde visual, funções e SEO.
+
+
+TROCA DE IDIOMA (PT / EN)
+------------------------------------------------
+O site agora tem um botão PT/EN no menu (desktop e mobile). Ele traduz a
+página inteira — textos, calculadora, planos, FAQ, rodapé e os modais de
+Termos/Privacidade — sem recarregar a página. A escolha do visitante fica
+salva no navegador dele, então na próxima visita o site já abre no idioma
+que ele escolheu da última vez.
+
+Se quiser adicionar mais textos traduzíveis no futuro, é só colocar no
+elemento do HTML:
+  data-i18n data-pt="Texto em português" data-en="Text in English"
+(ou data-i18n-html / data-pt-html / data-en-html quando o texto tiver
+tags dentro, tipo <strong> ou <a>). Isso está explicado em comentário
+no topo do i18n.js.
+
+Textos que a calculadora gera dinamicamente (resultado, dicas de
+negociação, hint de região) são traduzidos direto no script.js, puxando
+do dicionário que fica no i18n.js.
+
+
+O QUE FOI MELHORADO NESTA VERSÃO
+------------------------------------------------
+- Idioma: alternância completa PT/EN em todo o site, com preferência salva.
+- SEO: adicionado FAQPage (dados estruturados) pra Google poder mostrar suas
+  perguntas frequentes direto no resultado de busca; imagem de pré-visualização
+  (og-image.png) pra quando o link for compartilhado; robots.txt + sitemap.xml.
+- Acessibilidade: menu mobile e modais (Termos/Privacidade) agora prendem o
+  foco do teclado corretamente, devolvem o foco pra quem abriu, travam o
+  scroll da página atrás, e fecham com Esc. A busca de região (combobox)
+  agora expõe corretamente pra leitor de tela qual item está selecionado.
+- Pequenos reforços de segurança: o texto de cada resultado da busca de
+  região agora é inserido como texto puro (não HTML), evitando qualquer
+  risco de injeção de conteúdo.
+
+Se quiser, o og-image.png pode ser trocado por uma arte sua — só manter
+1200×630px e o mesmo nome de arquivo (ou atualizar o link no index.html).
+
+
+TUDO QUE FALTA CONFIGURAR ESTÁ EM UM SÓ LUGAR
+------------------------------------------------
+Abra o script.js e procure por "CONFIG" logo nas primeiras linhas do
+arquivo. É um bloco único com tudo que precisa ser preenchido antes de
+publicar de verdade:
+
+  FORMSPREE_ACTION   → link do formulário de lista de espera (formspree.io)
+  CONTACT_EMAIL      → e-mail que aparece no rodapé, Termos e Privacidade
+  SITE_DOMAIN        → domínio usado no texto que a calculadora copia
+
+Você só edita esses 3 valores — o resto do arquivo não precisa ser tocado.
+Enquanto FORMSPREE_ACTION não for preenchido, o site continua funcionando
+normalmente (calculadora, navegação, planos, etc.) e mostra um aviso
+educado só na hora de enviar a lista de espera — nada quebra.
+
+
+PASSO A PASSO — FORMSPREE (lista de espera)
+----------------------------------------------
+1. Crie conta grátis em formspree.io
+2. Crie um formulário novo, copie o link (formato https://formspree.io/f/xxxxxxx)
+3. Cole em FORMSPREE_ACTION, no script.js
+
+
+COMO PUBLICAR
+--------------
+1. Arraste a pasta inteira (todos os arquivos juntos) para app.netlify.com/drop
+2. Ou suba os arquivos num repositório do GitHub e ative o GitHub Pages
+
+Qualquer um dos dois é gratuito e funciona com essa estrutura de arquivos
+sem precisar mudar nada no código.
+
+
+
+

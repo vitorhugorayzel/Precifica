@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://precifica.htmly.com.br/sitemap.xml
